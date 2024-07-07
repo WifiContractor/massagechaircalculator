@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are Massage Chairs Worth It?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --background-color: #0c1016;
+            --glass-background: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+            --accent-color: #64ffda;
+            --card-background: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            text-align: center;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(100, 255, 218, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(100, 218, 255, 0.15) 0%, transparent 40%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tool-container {
+            background: var(--glass-background);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            margin: 15px 0 5px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        .icon {
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 15px;
+            background-color: var(--accent-color);
+            color: var(--background-color);
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+        }
+
+        #analysisResult {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .trade-in-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .trade-in-link:hover {
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>Are Massage Chairs Worth It?</h1>
+        <label for="sessionCost"><i class="fas fa-dollar-sign icon"></i>Cost per Massage Session ($):</label>
+        <input type="number" id="sessionCost" placeholder="Enter cost per session">
+
+        <label for="sessionsPerMonth"><i class="fas fa-calendar-alt icon"></i>Number of Massage Sessions per Month:</label>
+        <input type="number" id="sessionsPerMonth" placeholder="Enter how many sessions per month">
+
+        <label for="chairCost"><i class="fas fa-chair icon"></i>Cost of Massage Chair ($):</label>
+        <input type="number" id="chairCost" placeholder="Enter cost of massage chair">
+
+        <label for="chairLifespan"><i class="fas fa-hourglass-half icon"></i>Massage Chair Warranty (Years):</label>
+        <input type="number" id="chairLifespan" placeholder="Enter massage chair warranty">
+
+        <button onclick="calculateSavings()">Calculate Savings</button>
+
+        <div id="analysisResult">
+            <!-- Analysis results will go here -->
+        </div>
+
+        <a href="https://www.hitrons.com" target="_blank" class="trade-in-link">Shop for the best zero gravity massage chairs here</a>
+    </div>
+
+    <script>
+        function calculateSavings() {
+            // Get values from the input fields
+            let sessionCost = parseFloat(document.getElementById('sessionCost').value);
+            let sessionsPerMonth = parseFloat(document.getElementById('sessionsPerMonth').value);
+            let chairCost = parseFloat(document.getElementById('chairCost').value);
+            let chairLifespan = parseFloat(document.getElementById('chairLifespan').value);
+
+            // Check for valid inputs
+            if (isNaN(sessionCost) || isNaN(sessionsPerMonth) || isNaN(chairCost) || isNaN(chairLifespan)) {
+                alert("Please enter valid numbers in all fields.");
+                return; // Exit the function if any input is invalid
+            }
+
+            // Calculate total therapy cost over the lifespan of the chair
+            let totalTherapyCostPerYear = sessionCost * sessionsPerMonth * 12;
+            let totalTherapyCostOverLifespan = totalTherapyCostPerYear * chairLifespan;
+
+            // Calculate savings
+            let savings = totalTherapyCostOverLifespan - chairCost;
+
+            // Format savings as currency
+            let formattedSavings = savings.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+            // Display result with a shocked face emoji
+            let resultElement = document.getElementById('analysisResult');
+            resultElement.innerHTML = `Estimated Savings over ${chairLifespan} years: ${formattedSavings} 🥳`;
+            resultElement.style.display = 'block'; // Make the result visible
+        }
+    </script>
+</body>
+</html>
